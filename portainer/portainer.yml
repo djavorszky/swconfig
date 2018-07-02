@@ -1,0 +1,25 @@
+version: "3.6"
+
+services:
+  portainer:
+    image: portainer/portainer:1.18.1
+    deploy:
+      restart_policy:
+        condition: on-failure
+        delay: 5s
+        max_attempts: 3
+        window: 10s
+      placement:
+        constraints:
+          - node.role == manager
+    ports:
+      - 9000:9000
+    volumes:
+      - var/run/docker.sock,dst=/var/run/docker.sock
+      - portainer_data:/data
+    labels:
+      type: "management"
+    
+
+volumes:
+  portainer_data:
