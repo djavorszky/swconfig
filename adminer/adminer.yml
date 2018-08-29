@@ -1,0 +1,9 @@
+version: '3.6'
+
+services:
+  adminer:
+    image: adminer:4.6.3-standalone
+    restart: always
+    ports:
+      - 3005:8080
+
