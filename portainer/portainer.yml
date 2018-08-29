@@ -4,6 +4,7 @@ services:
   portainer:
     image: portainer/portainer:1.18.1
     deploy:
+      replicas: 1
       restart_policy:
         condition: on-failure
         delay: 5s
@@ -16,14 +17,10 @@ services:
       - 9000:9000
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
-      - portainer_data:/data
+      - p_data:/data
     labels:
       type: "management"
     
 
 volumes:
-  portainer_data:
-    driver_opts:
-      type: nfs
-      o: addr=bb8.liferay.int,re
-      device: :/mnt/data/docker/volumes
+  p_data:
