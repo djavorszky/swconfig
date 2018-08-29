@@ -1,0 +1,17 @@
+version: '3.6'
+services:
+  verdaccio:
+    image: verdaccio/verdaccio:3.7.1
+    labels:
+      int.liferay.description: "Private NPM registry"
+      int.liferay.owner: "David Balatoni <david.balatoni@liferay.com>"
+    ports:
+      - 4873:4873
+    volumes:
+        - verdaccio_storage:/verdaccio/storage
+        - verdaccio_conf:/verdaccio/conf
+        - verdaccio_plugins:/verdaccio/plugins
+volumes:
+  verdaccio_storage:
+  verdaccio_conf:
+  verdaccio_plugins:
